@@ -17,7 +17,11 @@ export default {
       textBlack: '#000000',
       subheadingGray: '#4A4A4A',
       subheadingLightGray: '#949090',
-    }
+    },
+    fontSize: {
+      primaryHeader: '48px',
+      subHeader:'24px'
+    },
   },
   plugins: [],
 }

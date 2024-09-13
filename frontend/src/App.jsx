@@ -1,12 +1,15 @@
+import SignUp from "./pages/Authentication/SignUp"
+import SignIn from "./pages/Authentication/SignIn"
+import ForgotPassword from "./pages/Authentication/ForgotPassword"
+import ResetPassword from "./pages/Authentication/Reset Passwod"
+import OTPPage from "./pages/Authentication/OTP_Page"
+
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
     <>
-      <div className="font-roboto text-xl">
-        Welcome to 
-        <h1>InvestEase</h1>
-      </div>
+    <OTPPage/>   
     </>
   )
 }
