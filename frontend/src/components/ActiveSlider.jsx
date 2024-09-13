@@ -16,7 +16,7 @@ const ActiveSlider = () =>{
           pagination={{ clickable: true }}
         >
           <SwiperSlide>
-            <div className='h-[200px] bg-cardDark rounded-lg'>
+            <div className='h-auto bg-cardDark rounded-lg pb-8'>
                 <div className='text-backgroundWhite text-[18px] font-roboto font-bold px-8 pt-4'>
                     This platform made investing easy! My portfolio has grown steadily, and their support team is fantastic. Highly recommend!
                 </div>
@@ -38,7 +38,7 @@ const ActiveSlider = () =>{
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className='h-[200px] bg-cardDark rounded-lg'>
+            <div className='h-auto bg-cardDark rounded-lg pb-8'>
                 <div className='text-backgroundWhite text-[18px] font-roboto font-bold px-8 pt-4'>
                     This platform made investing easy! My portfolio has grown steadily, and their support team is fantastic. Highly recommend!
                 </div>
@@ -60,7 +60,7 @@ const ActiveSlider = () =>{
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className='h-[200px] bg-cardDark rounded-lg'>
+            <div className='h-auto bg-cardDark rounded-lg pb-8'>
                 <div className='text-backgroundWhite text-[18px] font-roboto font-bold px-8 pt-4'>
                     This platform made investing easy! My portfolio has grown steadily, and their support team is fantastic. Highly recommend!
                 </div>
@@ -82,7 +82,7 @@ const ActiveSlider = () =>{
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className='h-[200px] bg-cardDark rounded-lg'>
+            <div className='h-auto bg-cardDark rounded-lg pb-8'>
                 <div className='text-backgroundWhite text-[18px] font-roboto font-bold px-8 pt-4'>
                     This platform made investing easy! My portfolio has grown steadily, and their support team is fantastic. Highly recommend!
                 </div>
