@@ -3,3 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
+.swiper {
+    width: 100%;
+    height: 300px;
+  }
