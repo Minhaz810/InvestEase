@@ -3,7 +3,7 @@ import ActiveSlider from "./ActiveSlider"
 const IntroCard = () =>{
     return (
         <>
-        <div className="w-full bg-cardLight ml-8 mt-8">
+        <div className="w-full bg-cardLight ml-8 mt-8 rounded-lg shadow-xl">
             <div className="pl-8 pt-8">
                 <img src="/Images/InvestEase.png" alt="Logo" className="w-16 h-16"/>
             </div>
