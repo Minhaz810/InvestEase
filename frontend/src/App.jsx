@@ -8,9 +8,9 @@ function App() {
 
   return (
     <>
-      <div className="text-3xl">
-        Welcome to InvestEase
-
+      <div className="font-roboto text-xl">
+        Welcome to 
+        <h1>InvestEase</h1>
       </div>
     </>
   )
