@@ -80,7 +80,7 @@ const OTP = () =>{
                         </div>
                             <PrimaryButton
                                 className="w-[425px] p-3 text-backgroundWhite mt-8"
-                                text = "Sign In"
+                                text = "Confirm"
                             />
                     </form>
                 </div>
