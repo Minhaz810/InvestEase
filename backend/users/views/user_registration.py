@@ -2,8 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from users.serializers.user_registration import UserRegistrationSerializer
 from rest_framework import status
-
-from django.core.mail import send_mail
+from users.utils.email import send_otp
 
 class UserRegistration(APIView):
     def post(self,request):
@@ -14,19 +13,12 @@ class UserRegistration(APIView):
             serializer.save()
             name = serializer.validated_data.get('name')
             email = serializer.validated_data.get('email')
-
-            """Mail sending"""
-
-            subject = 'OTP Veification'
-            message = 'Welcome to InvestEase, This is your OTP is 123456'
-            from_email = 'minhazchowdhury810@gmail.com'
-            recipient_list = [email]
             
-            send_mail(subject, message, from_email, recipient_list)
+            send_otp(email)
 
             return Response(
                 {
-                    "message": "User Creation Succesful",
+                    "message": "User Creation Succesful. Check Email For OTP",
                     "name": name,
                     "email": email
                 },

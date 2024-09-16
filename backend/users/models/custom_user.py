@@ -6,7 +6,7 @@ class User(AbstractUser):
     name = models.CharField(max_length= 255, unique= False)
     email = models.EmailField(unique=True)
     is_email_verified = models.BooleanField(default= False)
-    otp = models.CharField(max_length=6)
+    otp = models.CharField(max_length=6,null= True, blank= True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['name']
