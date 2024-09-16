@@ -8,7 +8,7 @@ class UserVerificationSerializer(serializers.Serializer):
                                   validators=[MinLengthValidator(6,message="OTP must have 6 characters."), 
                                               MaxLengthValidator(6,message="OTP must have 6 characters.")],
                                  )
-
+    
     def validate_email(self,value):
         try:
             user = User.objects.get(email = value) 

@@ -25,6 +25,7 @@ class UserVerification(APIView):
             else:
                 user.is_email_verified = True
                 user.save()
+            
                 return Response(
                     {
                         "message":"verification successful"
