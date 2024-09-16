@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.models import Group
-from users.models.custom_user import CustomUser
+from users.models.custom_user import User
 from users.validators.email import validate_email
 from users.validators.password import validate_password
 
@@ -15,7 +15,7 @@ class UserRegistrationSerializer(serializers.Serializer):
     email    = serializers.EmailField(required = True,
                                       validators = [
                                           UniqueValidator(
-                                          queryset = CustomUser.objects.all(),
+                                          queryset = User.objects.all(),
                                           message = "This email is already registered!"
                                           )
                                         ],
@@ -51,7 +51,7 @@ class UserRegistrationSerializer(serializers.Serializer):
         email     = validated_data['email']
         password  = validated_data['password_1']
 
-        user = CustomUser.objects.create(
+        user = User.objects.create(
             name=username,
             email=email
             )
