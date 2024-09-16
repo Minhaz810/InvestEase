@@ -1,31 +1,36 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from users.serializers.user_registration import UserRegistrationSerializer
+from users.serializers.otp_resend import OTPResendSerializer
 from rest_framework import status
 from users.utils.email import send_otp
 
-class UserRegistration(APIView):
+class OTPResend(APIView):
     def post(self,request):
         data = request.data
-        serializer = UserRegistrationSerializer(data = data)
+        serializer = OTPResendSerializer(data = data)
 
         if serializer.is_valid():
-            serializer.save()
-            name = serializer.validated_data.get('name')
             email = serializer.validated_data.get('email')
             
             otp_status = send_otp(email)
+            
             if otp_status == "Check Email For OTP":
-
                 return Response(
                     {
-                        "message": "User Creation Succesful. Check Email For OTP",
-                        "name": name,
+                        "message": "OTP has been resent",
                         "email": email
                     },
-                    status = status.HTTP_201_CREATED
+                    status = status.HTTP_200_OK
                 )
-        
+            else:
+                return Response(
+                    {
+                        "message": "Something went wrong, Please Try Again",
+                        "email": email
+                    },
+                    status = status.HTTP_200_OK
+                )
+
         error = next(iter(serializer.errors.values()))[0]
 
         return Response({
