@@ -1,6 +1,6 @@
 
 
-const InputField = ({type, placeholder, className,required}) => {
+const InputField = ({type, placeholder, className,required,onChange}) => {
     return (
         <>  
         <div>
@@ -9,6 +9,7 @@ const InputField = ({type, placeholder, className,required}) => {
                 placeholder={placeholder}
                 className={`font-roboto ${className}`}
                 required = {required}
+                onChange={onChange}
             />
         </div>
         </>
