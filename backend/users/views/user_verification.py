@@ -18,7 +18,7 @@ class UserVerification(APIView):
             if not user.otp == otp:
                 return Response(
                     {
-                        "message":"Incorrect OTP"
+                        "error":"Incorrect OTP"
                     },
                     status = status.HTTP_400_BAD_REQUEST
                 )
