@@ -4,7 +4,7 @@ import PrimaryButton from "../../components/PrimaryButton";
 import { useEffect,useState } from "react";
 import SignUpAPI from "../../api/signUp";
 import { useNavigate } from "react-router-dom";
-import Loader from "../../components/Loader";
+import { Link } from "react-router-dom";
 
 
 const SignUp = () =>{
@@ -29,7 +29,7 @@ const SignUp = () =>{
                 setLoading(false)
                 setError(error)
             }else{
-                navigate("/otp")
+                navigate("/otp",{state:{email}})
                 setLoading(false)
             }
         }
@@ -105,7 +105,12 @@ const SignUp = () =>{
                 </form>
 
                 <div className="mt-8 text-center text-subheadingGray font-medium font-roboto ">
-                    Already Have An Account? <span className="text-cardDark font-bold">Sign In</span>
+                    Already Have An Account? 
+                    <span className="text-cardDark font-bold">
+                        <Link to="/signin">
+                            Sign In
+                        </Link>
+                    </span>
                 </div>
             </div>
 

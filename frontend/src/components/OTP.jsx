@@ -1,7 +1,7 @@
 import { useState,useRef,useEffect } from 'react'
 import PrimaryButton from './PrimaryButton'
 
-const OTP = () =>{
+const OTP = ({email}) =>{
     const [otp,setOtp]=useState(new Array(6).fill(""))
     const inputRefs=(useRef([]))
 
@@ -58,7 +58,7 @@ const OTP = () =>{
                             An OTP Has Been Sent To
                         </div>
                         <div className="mt-8 text-center text-subheadingGray font-medium font-roboto ">
-                            xyx@fakemail.com
+                            {email}
                         </div>
                         <div id="otp" className="flex flex-row gap-2 mt-8">
                             {otp.map((value,index)=>{
