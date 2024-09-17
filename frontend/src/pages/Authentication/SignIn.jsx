@@ -1,16 +1,37 @@
 import IntroCard from "../../components/IntroCard";
 import InputField from "../../components/Input";
 import PrimaryButton from "../../components/PrimaryButton";
+import { useLocation } from "react-router-dom";
 
 const SignIn = () =>{
+    const location = useLocation()
+    const {status} = location.state || {}
+    
     return(
         <>
         <div className="flex justify-between gap-40 items-center">
             <div className="w-5/12">
-            <IntroCard/>
+                <IntroCard/>
             </div>
             
             <div className="w-7/12 mt-20 pr-64">
+                {status == "success" &&(
+                    <div className="text-center mb-12 font-roboto flex items-center justify-center">
+                        <svg 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            className="h-6 w-6 text-green-500 mr-2" 
+                            viewBox="0 0 24 24" 
+                            fill="none" 
+                            stroke="currentColor" 
+                            strokeWidth="2" 
+                            strokeLinecap="round" 
+                            strokeLinejoin="round"
+                        >
+                            <path d="M20 6L9 17l-5-5" />
+                        </svg>
+                        Your Email Has Been Verified!
+                    </div>
+                )}
                 <div>
                     <div className="text-textBlack text-primaryHeader font-roboto font-bold leading-tight">
                         Sign In

@@ -18,13 +18,14 @@ class UserVerification(APIView):
             if not user.otp == otp:
                 return Response(
                     {
-                        "message":"Incorrect OTP"
+                        "error":"Incorrect OTP"
                     },
                     status = status.HTTP_400_BAD_REQUEST
                 )
             else:
                 user.is_email_verified = True
                 user.save()
+            
                 return Response(
                     {
                         "message":"verification successful"
