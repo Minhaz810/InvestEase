@@ -4,6 +4,8 @@ import PrimaryButton from "../../components/PrimaryButton";
 import { useEffect,useState } from "react";
 import SignUpAPI from "../../api/signUp";
 import { useNavigate } from "react-router-dom";
+import Loader from "../../components/Loader";
+
 
 const SignUp = () =>{
     const [name,setName] = useState("")
@@ -17,13 +19,21 @@ const SignUp = () =>{
     const handleFormSubmit = async (e) =>{
         e.preventDefault()
         setLoading(true)
-        const response = await SignUpAPI(name,email,password1,password2)
-        if(response['status'] == 'error'){
-            let error = response['message']
-            setError(error)
+        if (password1!=password2){
+            setError("Password fields didn't match!")
+            setLoading(false)
         }else{
-            navigate("/otp")
+            const response = await SignUpAPI(name,email,password1,password2)
+            if(response['status'] == 'error'){
+                let error = response['message']
+                setLoading(false)
+                setError(error)
+            }else{
+                navigate("/otp")
+                setLoading(false)
+            }
         }
+        
     }
     
     return(
@@ -32,7 +42,6 @@ const SignUp = () =>{
             <div className="w-5/12">
             <IntroCard/>
             </div>
-            
             <div className="w-7/12 mt-20 pr-64">
                 <div>
                     <div className="text-textBlack text-primaryHeader font-roboto font-bold leading-tight">
@@ -50,6 +59,7 @@ const SignUp = () =>{
                             className="w-full p-3 border border-subheadingLightGray rounded-md focus:outline-none focus:border-primary"
                             required={true}
                             onChange={(e)=>{setName(e.target.value)}}
+                            onFocus={(e)=>{setError("")}}
                         />
                     </div>
                     <div className="mt-8">
@@ -59,6 +69,7 @@ const SignUp = () =>{
                             className="w-full p-3 border border-subheadingLightGray rounded-md focus:outline-none focus:border-primary"
                             required={true}
                             onChange={(e)=>{setEmail(e.target.value)}}
+                            onFocus={(e)=>{setError("")}}
                         />
                     </div>
                     <div className="mt-8">
@@ -68,6 +79,7 @@ const SignUp = () =>{
                             className="w-full p-3 border border-subheadingLightGray rounded-md focus:outline-none focus:border-primary"
                             required={true}
                             onChange={(e)=>{setPassword1(e.target.value)}}
+                            onFocus={(e)=>{setError("")}}
                         />
                     </div>
                     <div className="mt-8">
@@ -77,13 +89,17 @@ const SignUp = () =>{
                             className="w-full p-3 border border-subheadingLightGray rounded-md focus:outline-none focus:border-primary"
                             required={true}
                             onChange={(e)=>{setPassword2(e.target.value)}}
+                            onFocus={(e)=>{setError("")}}
                         />
                     </div>
-                    <div className="mt-12">
-
+                    <div className="mt-10">
+                        <div className="text-danger text-wrap text-center font-bold mb-2">
+                            {error}
+                        </div>
                         <PrimaryButton
-                            className="w-full p-3 text-backgroundWhite"
+                            className="w-full p-3 text-backgroundWhite hover:bg-hover"
                             text = "Sign Up"
+                            loading = {loading}
                         />
                     </div>
                 </form>
