@@ -1,6 +1,6 @@
 import React from "react"
 import {createBrowserRouter} from 'react-router-dom'
-
+// import ProtectedRouteOTP from "./pages/Authentication/ProtectedRouteOTP"
 import SignUp from "./pages/Authentication/SignUp"
 import SignIn from "./pages/Authentication/SignIn"
 import ForgotPassword from "./pages/Authentication/ForgotPassword"
@@ -13,12 +13,18 @@ const router = createBrowserRouter([
             element :<SignIn/>
         },
         {
+            path : "/",
+            element :<SignIn/>
+        },
+        {
             path : "/signup",
             element :<SignUp/>
         },
         {
             path:"/otp",
-            element:<OTPPage/>
+            element:(
+                <OTPPage/>
+            )
         },
         {
             path:"/forgot-password",

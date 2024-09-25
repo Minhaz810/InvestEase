@@ -29,6 +29,7 @@ const SignUp = () =>{
                 setLoading(false)
                 setError(error)
             }else{
+                localStorage.setItem("isRegistered","True")
                 navigate("/otp",{state:{email}})
                 setLoading(false)
             }
