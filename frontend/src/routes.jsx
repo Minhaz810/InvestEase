@@ -1,29 +1,54 @@
 import React from "react"
 import {createBrowserRouter} from 'react-router-dom'
-// import ProtectedRouteOTP from "./pages/Authentication/ProtectedRouteOTP"
 import SignUp from "./pages/Authentication/SignUp"
 import SignIn from "./pages/Authentication/SignIn"
 import ForgotPassword from "./pages/Authentication/ForgotPassword"
 import ResetPassword from "./pages/Authentication/Reset Passwod"
 import OTPPage from "./pages/Authentication/OTP_Page"
+import AccessOTPContextProvider from "./contexts/RegistrationContextProvider"
+import OTPPrivateRoute from "./components/OTPPrivateRoute"
+import PrivateRoute from "./components/PrivateRoute"
+import BasePage from "./pages/Authentication/BasePage"
+import SignInPrivateRoute from "./components/SignInPrivateroute"
+
 
 const router = createBrowserRouter([
         {
             path : "/signin",
-            element :<SignIn/>
+            element :(
+            <SignInPrivateRoute>
+                <SignIn/>
+            </SignInPrivateRoute>
+            )
         },
         {
             path : "/",
-            element :<SignIn/>
+            element :(
+            <AccessOTPContextProvider>
+                <SignInPrivateRoute>
+                    <SignIn/>
+                </SignInPrivateRoute>
+            </AccessOTPContextProvider>
+            )
         },
         {
             path : "/signup",
-            element :<SignUp/>
+            element :(
+            <AccessOTPContextProvider>
+                <SignInPrivateRoute>
+                    <SignUp/>
+                </SignInPrivateRoute>
+            </AccessOTPContextProvider>     
+            )
         },
         {
             path:"/otp",
             element:(
-                <OTPPage/>
+                <AccessOTPContextProvider>
+                    <OTPPrivateRoute>
+                        <OTPPage/>
+                    </OTPPrivateRoute>
+                </AccessOTPContextProvider>
             )
         },
         {
@@ -33,6 +58,17 @@ const router = createBrowserRouter([
         {
             path:"/reset-password",
             element:<ResetPassword/>
+        },
+        {
+            path: "/main",
+            element: (
+            <PrivateRoute>
+                <BasePage/>
+            </PrivateRoute>
+            ),
+            children: [
+
+            ]
         }
     ]
   )
