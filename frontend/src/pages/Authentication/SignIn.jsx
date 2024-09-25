@@ -2,11 +2,36 @@ import IntroCard from "../../components/IntroCard";
 import InputField from "../../components/Input";
 import PrimaryButton from "../../components/PrimaryButton";
 import { useLocation,Link} from "react-router-dom";
+import SignInAPI from "../../api/signIn";
+import { SetAccessToken,SetRefreshToken } from "../../api/setToken";
+import { useState } from "react";
+
 
 const SignIn = () =>{
+    const [email,setEmail] = useState("")
+    const [password,setPassword] = useState("") 
+    const [loading,setLoading] = useState(false)
+    const [error,setError] = useState("")
     const location = useLocation()
     const {status} = location.state || {}
     
+    const handleSubmit = async (e) =>{
+        e.preventDefault()
+        setLoading(true)
+        const response = await SignInAPI(email,password)
+        if (response['status'] == 'success'){
+            let accessToken = response['data']['access']
+            SetAccessToken(accessToken)
+            let refreshToken = response['data']['refresh']
+            SetRefreshToken(refreshToken)
+            setLoading(false)
+        }else{
+            let error = response['message']
+            setError(error)
+            setLoading(false)
+        }
+    }
+
     return(
         <>
         <div className="flex justify-between gap-40 items-center">
@@ -40,33 +65,45 @@ const SignIn = () =>{
                         Sign In To Your Account
                     </div>
                 </div>
-                <div className="mt-8">
-                    <InputField
-                        type="email"
-                        placeholder="Email"
-                        className="w-full p-3 border border-subheadingLightGray rounded-md focus:outline-none focus:border-primary"
-                        required={true}
-                    />
-                </div>
-                <div className="mt-8">
-                    <InputField
-                        type="password"
-                        placeholder="Password"
-                        className="w-full p-3 border border-subheadingLightGray rounded-md focus:outline-none focus:border-primary"
-                        required={true}
-                    />
-                </div>
-
-                <div className="mt-12">
-
-                    <PrimaryButton
-                        className="w-full p-3 text-backgroundWhite"
-                        text = "Sign In"
-                    />
-                     <div className="text-right font-bold text-cardDark font-roboto mt-2">
-                        Forgot Password
+                <form onSubmit={handleSubmit}>
+                    <div className="mt-8">
+                        <InputField
+                            type="email"
+                            placeholder="Email"
+                            className="w-full p-3 border border-subheadingLightGray rounded-md focus:outline-none focus:border-primary"
+                            required={true}
+                            onChange={(e)=>{setEmail(e.target.value)}}
+                            onFocus={(e)=>setError("")}
+                        />
                     </div>
-                </div>
+                    <div className="mt-8">
+                        <InputField
+                            type="password"
+                            placeholder="Password"
+                            className="w-full p-3 border border-subheadingLightGray rounded-md focus:outline-none focus:border-primary"
+                            required={true}
+                            onChange={(e)=>{setPassword(e.target.value)}}
+                            onFocus={(e)=>setError("")}
+                        />
+                    </div>
+                    <div className="mt-12">
+                        {
+                            error && (
+                                <div className="text-danger font-bold text-center mb-2">
+                                    {error}
+                                </div>
+                            )
+                        }
+                        <PrimaryButton
+                            className="w-full p-3 text-backgroundWhite"
+                            text = "Sign In"
+                            loading={loading}
+                        />
+                        <div className="text-right font-bold text-cardDark font-roboto mt-2">
+                            Forgot Password
+                        </div>
+                    </div>
+                </form>
 
                 <div className="mt-8 text-center text-subheadingGray font-medium font-roboto ">
                     Don't Have Any Account? <span className="text-cardDark font-bold"><Link to="/signup">Registration</Link></span>
