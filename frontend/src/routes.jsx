@@ -6,18 +6,28 @@ import ForgotPassword from "./pages/Authentication/ForgotPassword"
 import ResetPassword from "./pages/Authentication/Reset Passwod"
 import OTPPage from "./pages/Authentication/OTP_Page"
 import AccessOTPContextProvider from "./contexts/RegistrationContextProvider"
-import PrivateRoute from "./components/OTPPrivateRoute"
+import OTPPrivateRoute from "./components/OTPPrivateRoute"
+import PrivateRoute from "./components/PrivateRoute"
+import BasePage from "./pages/Authentication/BasePage"
+import SignInPrivateRoute from "./components/SignInPrivateroute"
+
 
 const router = createBrowserRouter([
         {
             path : "/signin",
-            element :<SignIn/>
+            element :(
+            <SignInPrivateRoute>
+                <SignIn/>
+            </SignInPrivateRoute>
+            )
         },
         {
             path : "/",
             element :(
             <AccessOTPContextProvider>
-                <SignIn/>
+                <SignInPrivateRoute>
+                    <SignIn/>
+                </SignInPrivateRoute>
             </AccessOTPContextProvider>
             )
         },
@@ -25,7 +35,9 @@ const router = createBrowserRouter([
             path : "/signup",
             element :(
             <AccessOTPContextProvider>
-                <SignUp/>
+                <SignInPrivateRoute>
+                    <SignUp/>
+                </SignInPrivateRoute>
             </AccessOTPContextProvider>     
             )
         },
@@ -33,9 +45,9 @@ const router = createBrowserRouter([
             path:"/otp",
             element:(
                 <AccessOTPContextProvider>
-                    <PrivateRoute>
+                    <OTPPrivateRoute>
                         <OTPPage/>
-                    </PrivateRoute>
+                    </OTPPrivateRoute>
                 </AccessOTPContextProvider>
             )
         },
@@ -46,6 +58,17 @@ const router = createBrowserRouter([
         {
             path:"/reset-password",
             element:<ResetPassword/>
+        },
+        {
+            path: "/main",
+            element: (
+            <PrivateRoute>
+                <BasePage/>
+            </PrivateRoute>
+            ),
+            children: [
+
+            ]
         }
     ]
   )

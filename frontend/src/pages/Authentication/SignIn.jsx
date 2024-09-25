@@ -4,7 +4,9 @@ import PrimaryButton from "../../components/PrimaryButton";
 import { useLocation,Link} from "react-router-dom";
 import SignInAPI from "../../api/signIn";
 import { SetAccessToken,SetRefreshToken } from "../../api/setToken";
-import { useState } from "react";
+import { useState,useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import AuthContext from "../../contexts/AuthContext";
 
 
 const SignIn = () =>{
@@ -14,7 +16,9 @@ const SignIn = () =>{
     const [error,setError] = useState("")
     const location = useLocation()
     const {status} = location.state || {}
-    
+    const navigate = useNavigate()
+    const {updateUser} = useContext(AuthContext)
+
     const handleSubmit = async (e) =>{
         e.preventDefault()
         setLoading(true)
@@ -24,7 +28,10 @@ const SignIn = () =>{
             SetAccessToken(accessToken)
             let refreshToken = response['data']['refresh']
             SetRefreshToken(refreshToken)
+            updateUser(accessToken)
             setLoading(false)
+            navigate("/main")
+
         }else{
             let error = response['message']
             setError(error)
