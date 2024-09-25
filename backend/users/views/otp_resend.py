@@ -8,7 +8,7 @@ class OTPResend(APIView):
     def post(self,request):
         data = request.data
         serializer = OTPResendSerializer(data = data)
-
+    
         if serializer.is_valid():
             email = serializer.validated_data.get('email')
             
@@ -28,7 +28,7 @@ class OTPResend(APIView):
                         "message": "Something went wrong, Please Try Again",
                         "email": email
                     },
-                    status = status.HTTP_200_OK
+                    status = status.HTTP_500_INTERNAL_SERVER_ERROR
                 )
 
         error = next(iter(serializer.errors.values()))[0]
@@ -36,3 +36,5 @@ class OTPResend(APIView):
         return Response({
             "error": str(error)
         }, status=status.HTTP_400_BAD_REQUEST)
+        
+       

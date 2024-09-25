@@ -16,7 +16,7 @@ const OTPPage = () =>{
             <div className="w-7/12 mt-20 pr-64">
                 <OTP
                     email={email}
-                />   
+                />
                 <div className="mt-8 text-center text-subheadingGray font-medium font-roboto ">
                     Already Have An Account? <span className="text-cardDark font-bold">Sign In</span>
                 </div>

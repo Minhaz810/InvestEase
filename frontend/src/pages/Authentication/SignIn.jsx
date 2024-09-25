@@ -1,7 +1,7 @@
 import IntroCard from "../../components/IntroCard";
 import InputField from "../../components/Input";
 import PrimaryButton from "../../components/PrimaryButton";
-import { useLocation } from "react-router-dom";
+import { useLocation,Link} from "react-router-dom";
 
 const SignIn = () =>{
     const location = useLocation()
@@ -69,7 +69,7 @@ const SignIn = () =>{
                 </div>
 
                 <div className="mt-8 text-center text-subheadingGray font-medium font-roboto ">
-                    Don't Have Any Account? <span className="text-cardDark font-bold">Registration</span>
+                    Don't Have Any Account? <span className="text-cardDark font-bold"><Link to="/signup">Registration</Link></span>
                 </div>
             </div>
         </div>
