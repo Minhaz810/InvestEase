@@ -83,52 +83,51 @@ const OTP = ({email}) =>{
             setSeconds(10)
         }
     }
-    
 
     return (
         <>
-                <div id="signup-verification-form" className="flex-1 rounded-2xl">
-                    <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center gap- bg-white rounded-2xl h-full w-full">
-                        <div className="text-textBlack text-primaryHeader text-center font-roboto font-bold leading-tight">
-                            OTP Verification
-                        </div>
-                        <div className="text-subheadingLightGray text-subHeader font-roboto leading-tight mt-4">
-                            An OTP Has Been Sent To
-                        </div>
-                        <div className="mt-8 text-center text-subheadingGray font-medium font-roboto ">
-                            {email}
-                        </div>
-                        <div id="otp" className="flex flex-row gap-2 mt-8 mb-8">
-                            {otp.map((value,index)=>{
-                                return (
-                                            <input type="text" 
-                                                ref={(input)=>(inputRefs.current[index]=input)}
-                                                maxLength="1"
-                                                className="text-subheadingGray text-2xl text-center border-2 border-formBlue w-16 h-16 flex justify-center items-center rounded-md"
-                                                key={index}
-                                                value={value}
-                                                onChange={(event)=>(handleChange(event,index))}
-                                                onKeyDown={(event)=>(handleOnKeyDown(event,index))}
-                                                onFocus={(event)=>{setError("")}}
-                                            />
-                                        )
-                                    }
-                                )
-                            }
-                        
-                        </div>
-                            {error &&
-                            (<div className="text-danger text-wrap text-center font-bold mt-6 mb-2">
-                                {error}
-                            </div>)
-                            }
-                            {resendMessage &&
-                            (<div className="text-cardDark text-wrap text-center font-bold mt-6 mb-2">
-                                {resendMessage}
-                            </div>)
-                            }
-                            <div>
-                            {seconds>0 ?
+            <div id="signup-verification-form" className="flex-1 rounded-2xl">
+                <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center gap- bg-white rounded-2xl h-full w-full">
+                    <div className="text-textBlack text-primaryHeader text-center font-roboto font-bold leading-tight">
+                        OTP Verification
+                    </div>
+                    <div className="text-subheadingLightGray text-subHeader font-roboto leading-tight mt-4">
+                        An OTP Has Been Sent To
+                    </div>
+                    <div className="mt-8 text-center text-subheadingGray font-medium font-roboto ">
+                        {email}
+                    </div>
+                    <div id="otp" className="flex flex-row gap-2 mt-8 mb-8">
+                        {otp.map((value,index)=>{
+                            return (
+                                        <input type="text" 
+                                            ref={(input)=>(inputRefs.current[index]=input)}
+                                            maxLength="1"
+                                            className="text-subheadingGray text-2xl text-center border-2 border-formBlue w-16 h-16 flex justify-center items-center rounded-md"
+                                            key={index}
+                                            value={value}
+                                            onChange={(event)=>(handleChange(event,index))}
+                                            onKeyDown={(event)=>(handleOnKeyDown(event,index))}
+                                            onFocus={(event)=>{setError("")}}
+                                        />
+                                    )
+                                }
+                            )
+                        }
+                    
+                    </div>
+                        {error &&
+                        (<div className="text-danger text-wrap text-center font-bold mt-6 mb-2">
+                            {error}
+                        </div>)
+                        }
+                        {resendMessage &&
+                        (<div className="text-cardDark text-wrap text-center font-bold mt-6 mb-2">
+                            {resendMessage}
+                        </div>)
+                        }
+                        <div>
+                        {seconds>0 ?
                             (<div className='text-subheadingLightGray font-bold mb-1 cursor-not-allowed disabled'>
                                 Resend OTP in {`${seconds}s`}
                             </div>):
@@ -137,15 +136,15 @@ const OTP = ({email}) =>{
                                 Resend OTP
                             </div>
                             )
-                            }
-                            <PrimaryButton
-                                className="w-[425px] p-3 text-backgroundWhite"
-                                text = "Confirm"
-                                loading={loading}
-                            />
-                            </div> 
-                    </form>
-                </div>
+                        }
+                        <PrimaryButton
+                            className="w-[425px] p-3 text-backgroundWhite"
+                            text = "Confirm"
+                            loading={loading}
+                        />
+                        </div> 
+                </form>
+            </div>
         </>
     )
 }

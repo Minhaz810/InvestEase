@@ -1,11 +1,12 @@
 import React from "react"
 import {createBrowserRouter} from 'react-router-dom'
-// import ProtectedRouteOTP from "./pages/Authentication/ProtectedRouteOTP"
 import SignUp from "./pages/Authentication/SignUp"
 import SignIn from "./pages/Authentication/SignIn"
 import ForgotPassword from "./pages/Authentication/ForgotPassword"
 import ResetPassword from "./pages/Authentication/Reset Passwod"
 import OTPPage from "./pages/Authentication/OTP_Page"
+import AccessOTPContextProvider from "./contexts/RegistrationContextProvider"
+import PrivateRoute from "./components/OTPPrivateRoute"
 
 const router = createBrowserRouter([
         {
@@ -14,16 +15,28 @@ const router = createBrowserRouter([
         },
         {
             path : "/",
-            element :<SignIn/>
+            element :(
+            <AccessOTPContextProvider>
+                <SignIn/>
+            </AccessOTPContextProvider>
+            )
         },
         {
             path : "/signup",
-            element :<SignUp/>
+            element :(
+            <AccessOTPContextProvider>
+                <SignUp/>
+            </AccessOTPContextProvider>     
+            )
         },
         {
             path:"/otp",
             element:(
-                <OTPPage/>
+                <AccessOTPContextProvider>
+                    <PrivateRoute>
+                        <OTPPage/>
+                    </PrivateRoute>
+                </AccessOTPContextProvider>
             )
         },
         {

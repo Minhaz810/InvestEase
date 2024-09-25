@@ -5,7 +5,8 @@ import { useEffect,useState } from "react";
 import SignUpAPI from "../../api/signUp";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-
+import { useContext } from "react";
+import AccessOTPContext from "../../contexts/AccessOTPContext";
 
 const SignUp = () =>{
     const [name,setName] = useState("")
@@ -15,7 +16,9 @@ const SignUp = () =>{
     const [error,setError] = useState("")
     const [loading,setLoading] = useState(false)
     const navigate = useNavigate()
-
+    
+    const {setCanAccessOTP} = useContext(AccessOTPContext)
+    
     const handleFormSubmit = async (e) =>{
         e.preventDefault()
         setLoading(true)
@@ -29,12 +32,11 @@ const SignUp = () =>{
                 setLoading(false)
                 setError(error)
             }else{
-                localStorage.setItem("isRegistered","True")
+                setCanAccessOTP(true)
                 navigate("/otp",{state:{email}})
                 setLoading(false)
             }
         }
-        
     }
     
     return(
