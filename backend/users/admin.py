@@ -13,7 +13,7 @@ class CustomUserAdmin(UserAdmin):
         ('Personal Info', {'fields': ('name',)}),
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         ('Important dates', {'fields': ('last_login', 'date_joined')}),
-        ('OTP Info', {'fields': ('is_email_verified', 'otp')}),
+        ('OTP Info', {'fields': ('is_email_verified', 'otp','otp_expiry')}),
     )
     add_fieldsets = (
         (None, {
