@@ -28,6 +28,7 @@ class CustomUserManager(BaseUserManager):
             raise ValueError('Superuser must have is_superuser=True.')
 
         return self.create_user(email, name, password, **extra_fields)
+              
 
 
 class User(AbstractUser):
@@ -36,6 +37,7 @@ class User(AbstractUser):
     email = models.EmailField(unique=True)
     is_email_verified = models.BooleanField(default= False)
     otp = models.CharField(max_length=6,null= True, blank= True)
+    otp_expiry =  models.DateTimeField(null=True,blank=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['name']
