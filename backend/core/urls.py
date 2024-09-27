@@ -5,7 +5,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/user/',include('users.urls'))
+    path('api/user/',include('users.urls')),
+    path('api/mutual-fund/',include('mutual_fund.urls'))
 ]
 
 #This is for development only, has to serve through nginx or S3 or blob storage later

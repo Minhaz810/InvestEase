@@ -7,10 +7,23 @@ class FundGroup(models.Model):
     group_name  = models.CharField(max_length=255,null= True, blank= True)
     description = models.TextField()
 
+    def __str__(self) -> str:
+        return self.group_name
+    
+    class Meta:
+        verbose_name_plural = "Fund Group"
+
 class FundSubGroup(models.Model):
     sub_group_name = models.CharField(max_length=255,null=True,blank=True)
     fund_group     = models.ForeignKey(FundGroup,on_delete=models.CASCADE,related_name="fund_group")
     description    = models.TextField()
+
+    def __str__(self) -> str:
+        return self.sub_group_name
+    
+    class Meta:
+        verbose_name_plural = "Fund Sub Group"
+    
 
 class MutualFund(models.Model):
     name                = models.CharField(max_length=255)
@@ -21,7 +34,11 @@ class MutualFund(models.Model):
     minimum_investment  = models.DecimalField(decimal_places=2,max_digits=100,default=0.0)
     total_unit          = models.IntegerField(default=0)
 
-
+    def __str__(self) -> str:
+        return self.name
+    
+    class Meta:
+        verbose_name_plural = "Mutual Fund"
 
 
     

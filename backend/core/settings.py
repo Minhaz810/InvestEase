@@ -142,7 +142,7 @@ EMAIL_HOST_USER = 'minhazchowdhury810@gmail.com'
 EMAIL_HOST_PASSWORD = 'mdhm chgp xubu fphd'
 
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=90),
     "ROTATE_REFRESH_TOKENS": True,
     "BLACKLIST_AFTER_ROTATION": True,
