@@ -1,11 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect,useState,useRef } from "react";
 import { useContext } from "react";
 import AuthContext from "../contexts/AuthContext";
 
 const Shared =()=>{
     const {user} = useContext(AuthContext)
-    
+    const [open,setOpen] = useState(false)
+    const menuRef = useRef(null)
+
+    const handleClickOutside = (event) => {
+        if (menuRef.current && !menuRef.current.contains(event.target)) {
+            setOpen(false)
+        }
+    }
+
+    useEffect(() => {
+        window.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            window.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
+
     return(
+        <div>
         <div className="flex flex-row shadow-md h-auto bg-backgroundWhite pt-4 gap-8">
             <div>
                 <img src="/Images/InvestEase.png" alt="Logo" className="w-12 h-12 ml-12"/>
@@ -14,16 +31,16 @@ const Shared =()=>{
                 <div className=" cursor-pointer border-b-4 border-textBlack text-textBlack font-roboto font-bold ">
                     Dashboard
                 </div>
-                <div className="text-subheadingLightGray font-roboto font-bold">
+                <div className="text-subheadingLightGray font-roboto font-bold hover:text-textBlack cursor-pointer">
                     Mutual Fund List
                 </div>
-                <div className="text-subheadingLightGray font-roboto font-bold">
+                <div className="text-subheadingLightGray font-roboto font-bold hover:text-textBlack cursor-pointer">
                     Portfolio
                 </div>
-                <div className="text-subheadingLightGray font-roboto font-bold">
+                <div className="text-subheadingLightGray font-roboto font-bold hover:text-textBlack cursor-pointer">
                     Friends and Family
                 </div>              
-                <div className="text-subheadingLightGray font-roboto font-bold">
+                <div className="text-subheadingLightGray font-roboto font-bold hover:text-textBlack cursor-pointer">
                     Mutual Fund News
                 </div>              
             </div>
@@ -47,14 +64,47 @@ const Shared =()=>{
                     <div className="inline-block h-10 w-10 rounded-full bg-subheadingLightGray overflow-hidden">
                         <img src="/Images/Profile Image.png" alt="Logo" className="object-cover h-full w-full"/>
                     </div>
-                    <div className="ml-2 cursor-pointer">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 16L6 10H18L12 16Z" fill="black"/>
-                        </svg>
+                    <div className="ml-2 cursor-pointer transition-transform transform hover:scale-110" onClick={()=>{setOpen(!open)}}>
+                        {!open &&
+                            (
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 16L6 10H18L12 16Z" fill="black"/>
+                            </svg>
+                            )
+                        }
+                        {open &&
+                            (
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 8L18 14H6L12 8Z" fill="black"/>
+                            </svg>
+                            )
+                        }
                     </div>
                  </div>
-            </div>     
+            </div>
         </div>
+        
+        {open &&
+            (
+            <div
+                ref={menuRef} 
+                className="flex flex-col items-center ml-auto mr-12 h-32 w-40 mt-2 rounded-b-md shadow-md bg-cardLightWhite"
+            >
+                <div className="text-subheadingGray font-roboto font-bold w-full py-2 pl-4 cursor-pointer hover:bg-subheadingGray hover:text-backgroundWhite rounded-t-md">
+                    Profile
+                </div>
+                <div className="h-[1px] w-full bg-cardLight"></div>
+                <div className="text-subheadingGray font-roboto font-bold w-full py-2 pl-4 cursor-pointer hover:bg-subheadingGray hover:text-backgroundWhite">
+                    Transactions
+                </div>
+                <div className="h-[1px] w-full bg-cardLight"></div>
+                <div className="text-subheadingGray font-roboto font-bold w-full py-2 pl-4 cursor-pointer hover:bg-subheadingGray hover:text-backgroundWhite flex-grow rounded-b-md">
+                    Documents
+                </div>
+            </div>
+            )
+        }
+    </div>
     )
 }
 
