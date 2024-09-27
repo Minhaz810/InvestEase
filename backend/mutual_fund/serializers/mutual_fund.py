@@ -18,4 +18,4 @@ class MutualFundSerializer(serializers.ModelSerializer):
 
     class Meta:
         model  = MutualFund
-        fields = ['name','logo','minimum_investment','sip_enabled','total_unit','fund_sub_group']
+        fields = ['id','name','logo','minimum_investment','sip_enabled','total_unit','fund_sub_group']

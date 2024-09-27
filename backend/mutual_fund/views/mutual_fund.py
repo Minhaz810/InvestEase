@@ -9,9 +9,16 @@ class MutualFundView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self,request):
-        mutual_fund = MutualFund.objects.all().order_by("-id")
+        id = request.query_params.get("id",None)
+
+        if id and  id.isnumeric():
+            mutual_fund = MutualFund.objects.filter(id = id).order_by("-id")
+        else:
+            mutual_fund = MutualFund.objects.all().order_by("-id")
+
         serializer  = MutualFundSerializer(mutual_fund,many=True)
         data        = serializer.data
+
         return Response({
             "data":data
         },status= status.HTTP_200_OK)
