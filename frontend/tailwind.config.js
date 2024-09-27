@@ -12,6 +12,7 @@ export default {
     },
     colors:{
       backgroundWhite: '#FFFFFF',
+      cardLightWhite:"#FAFAFA",
       cardLight: '#F4E8E8',
       cardDark: '#2D3C62',
       hover:"#3A4B7A",
@@ -22,7 +23,8 @@ export default {
     },
     fontSize: {
       primaryHeader: '48px',
-      subHeader:'24px'
+      subHeader:'24px',
+      navbar:'20px',
     },
   },
   plugins: [],

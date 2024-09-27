@@ -1,10 +1,15 @@
+import { useEffect } from "react";
 import IntroCard from "../../components/IntroCard";
 import OTP from "../../components/OTP";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
+import ResendOTP from "../../api/resendOTP";
 
 const OTPPage = () =>{
     const location = useLocation()
     const {email} = location.state || {}
+    const navigate = useNavigate()
 
     return(
         <>
