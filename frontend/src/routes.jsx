@@ -8,8 +8,15 @@ import OTPPage from "./pages/Authentication/OTP_Page"
 import AccessOTPContextProvider from "./contexts/OTPAccessContextProvider"
 import OTPPrivateRoute from "./components/OTPPrivateRoute"
 import PrivateRoute from "./components/PrivateRoute"
-import Shared from "./pages/Shared"
+import SharedNavbar from "./pages/SharedNavbar"
 import SignInPrivateRoute from "./components/SignInPrivateroute"
+import Dashboard from "./pages/Home/DashBoard"
+import Main from "./layout/Main"
+import MutualFundList from "./pages/Home/MutualFundList"
+import Portfolio from "./pages/Home/Portfolio"
+import FriendsAndFamily from "./pages/Home/FriendsAndFamily"
+import FinancialNews from "./pages/Home/FinancialNews"
+import { Navigate } from "react-router-dom"
 
 
 const router = createBrowserRouter([
@@ -66,11 +73,35 @@ const router = createBrowserRouter([
             path: "/main",
             element: (
             <PrivateRoute>
-                <Shared/>
+                <Main/>
             </PrivateRoute>
             ),
             children: [
-
+                {
+                    path: "",
+                    element: <Navigate to="dashboard" />
+                },
+                {
+                    path:"dashboard",
+                    element: <Dashboard/>
+                },
+                {
+                    path:"mutual-fund-list",
+                    element: <MutualFundList/>
+                },
+                {
+                    path:"portfolio",
+                    element: <Portfolio/>
+                },
+                {
+                    path:"friends-n-family",
+                    element: <FriendsAndFamily/>
+                },
+                {
+                    path:"financial-news",
+                    element: <FinancialNews/>
+                },
+                
             ]
         }
     ]

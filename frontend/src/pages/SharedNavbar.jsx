@@ -1,8 +1,9 @@
 import React, { useEffect,useState,useRef } from "react";
 import { useContext } from "react";
 import AuthContext from "../contexts/AuthContext";
+import { NavLink } from "react-router-dom";
 
-const Shared =()=>{
+const SharedNavbar =()=>{
     const {user} = useContext(AuthContext)
     const [open,setOpen] = useState(false)
     const menuRef = useRef(null)
@@ -28,21 +29,50 @@ const Shared =()=>{
                 <img src="/Images/InvestEase.png" alt="Logo" className="w-12 h-12 ml-12"/>
             </div>
             <div className="flex flex-row text-navbar justify-between pt-4 gap-8 ml-8">
-                <div className=" cursor-pointer border-b-4 border-textBlack text-textBlack font-roboto font-bold ">
-                    Dashboard
-                </div>
-                <div className="text-subheadingLightGray font-roboto font-bold hover:text-textBlack cursor-pointer">
-                    Mutual Fund List
-                </div>
-                <div className="text-subheadingLightGray font-roboto font-bold hover:text-textBlack cursor-pointer">
-                    Portfolio
-                </div>
-                <div className="text-subheadingLightGray font-roboto font-bold hover:text-textBlack cursor-pointer">
-                    Friends and Family
-                </div>              
-                <div className="text-subheadingLightGray font-roboto font-bold hover:text-textBlack cursor-pointer">
-                    Mutual Fund News
-                </div>              
+                <NavLink
+                    to = "/main/dashboard"
+                    className={({ isActive}) =>
+                        isActive ? "cursor-pointer border-b-4 border-textBlack text-textBlack font-roboto font-bold" : "text-subheadingLightGray font-roboto font-bold hover:text-textBlack cursor-pointer"
+                      }
+                >
+                DashBoard
+                </NavLink>
+
+                <NavLink
+                    to = "/main/mutual-fund-list"
+                    className={({ isActive}) =>
+                        isActive ? "cursor-pointer border-b-4 border-textBlack text-textBlack font-roboto font-bold" : "text-subheadingLightGray font-roboto font-bold hover:text-textBlack cursor-pointer"
+                      }
+                >
+                Mutual Fund List
+                </NavLink>
+
+                <NavLink
+                    to = "/main/portfolio"
+                    className={({ isActive}) =>
+                        isActive ? "cursor-pointer border-b-4 border-textBlack text-textBlack font-roboto font-bold" : "text-subheadingLightGray font-roboto font-bold hover:text-textBlack cursor-pointer"
+                      }
+                >
+                Portfolio
+                </NavLink>
+
+                <NavLink
+                    to = "/main/friends-n-family"
+                    className={({ isActive}) =>
+                        isActive ? "cursor-pointer border-b-4 border-textBlack text-textBlack font-roboto font-bold" : "text-subheadingLightGray font-roboto font-bold hover:text-textBlack cursor-pointer"
+                      }
+                >
+                Friends And Family
+                </NavLink>
+
+                <NavLink
+                    to = "/main/financial-news"
+                    className={({ isActive}) =>
+                        isActive ? "cursor-pointer border-b-4 border-textBlack text-textBlack font-roboto font-bold" : "text-subheadingLightGray font-roboto font-bold hover:text-textBlack cursor-pointer"
+                      }
+                >
+                Financial News
+                </NavLink>             
             </div>
             <div className="flex flex-row ml-auto mr-12 gap-8">
                 <div className="inline-block my-4 cursor-pointer">
@@ -50,7 +80,7 @@ const Shared =()=>{
                         <path d="M8 12C6.34315 12 5 13.3431 5 15V45C5 46.6569 6.34315 48 8 48H56C57.6569 48 59 46.6569 59 45V15C59 13.3431 57.6569 12 56 12H8Z" fill="black"/>
                         <path d="M8 16L32 32L56 16" stroke="white" stroke-width="2"/>
                         <circle cx="50" cy="14" r="14" fill="red"/>
-                        <text x="50" y="21" font-size="20" font-family="Roboto, sans-serif" font-weight="bold" text-anchor="middle" fill="white">5</text>
+                        <text x="50" y="21" font-size="20" font-family="Roboto, sans-serif" font-weight="bold" text-anchor="middle" fill="white">1</text>
                     </svg>
                 </div>
                 <div className="inline-block my-4 cursor-pointer">
@@ -88,7 +118,7 @@ const Shared =()=>{
             (
             <div
                 ref={menuRef} 
-                className="flex flex-col items-center ml-auto mr-12 h-32 w-40 mt-2 rounded-b-md shadow-md bg-cardLightWhite"
+                className="flex flex-col items-center mr-12 h-32 w-40 mt-2 rounded-b-md shadow-md bg-cardLightWhite z-50 absolute right-0"
             >
                 <div className="text-subheadingGray font-roboto font-bold w-full py-2 pl-4 cursor-pointer hover:bg-subheadingGray hover:text-backgroundWhite rounded-t-md">
                     Profile
@@ -108,4 +138,4 @@ const Shared =()=>{
     )
 }
 
-export default Shared
+export default SharedNavbar
