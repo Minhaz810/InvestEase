@@ -102,6 +102,7 @@ const SignUp = () =>{
                         <PrimaryButton
                             className="w-full p-3 text-backgroundWhite hover:bg-hover"
                             text = "Sign Up"
+                            rounded="md"
                             loading = {loading}
                         />
                     </div>

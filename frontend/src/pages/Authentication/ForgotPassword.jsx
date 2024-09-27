@@ -32,6 +32,7 @@ const ForgotPassword = () =>{
 
                     <PrimaryButton
                         className="w-full p-3 text-backgroundWhite"
+                        rounded="md"
                         text = "Confirm"
                     />
                 </div>

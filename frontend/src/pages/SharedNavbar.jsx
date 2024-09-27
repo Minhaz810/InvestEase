@@ -23,7 +23,7 @@ const SharedNavbar =()=>{
 
 
     return(
-        <div>
+        <div className="sticky top-0 z-10">
         <div className="flex flex-row shadow-md h-auto bg-backgroundWhite pt-4 gap-8">
             <div>
                 <img src="/Images/InvestEase.png" alt="Logo" className="w-12 h-12 ml-12"/>
@@ -118,7 +118,7 @@ const SharedNavbar =()=>{
             (
             <div
                 ref={menuRef} 
-                className="flex flex-col items-center mr-12 h-32 w-40 mt-2 rounded-b-md shadow-md bg-cardLightWhite z-50 absolute right-0"
+                className="flex flex-col items-center mr-12 h-43 w-48 mt-2 rounded-b-md shadow-md bg-cardLightWhite z-50 absolute right-0"
             >
                 <div className="text-subheadingGray font-roboto font-bold w-full py-2 pl-4 cursor-pointer hover:bg-subheadingGray hover:text-backgroundWhite rounded-t-md">
                     Profile
@@ -128,8 +128,12 @@ const SharedNavbar =()=>{
                     Transactions
                 </div>
                 <div className="h-[1px] w-full bg-cardLight"></div>
-                <div className="text-subheadingGray font-roboto font-bold w-full py-2 pl-4 cursor-pointer hover:bg-subheadingGray hover:text-backgroundWhite flex-grow rounded-b-md">
+                <div className="text-subheadingGray font-roboto font-bold w-full py-2 pl-4 cursor-pointer hover:bg-subheadingGray hover:text-backgroundWhite">
                     Documents
+                </div>
+                <div className="h-[1px] w-full bg-cardLight"></div>
+                <div className="text-subheadingGray font-roboto font-bold w-full py-2 pl-4 cursor-pointer hover:bg-subheadingGray hover:text-backgroundWhite flex-grow rounded-b-md">
+                    Settings
                 </div>
             </div>
             )
