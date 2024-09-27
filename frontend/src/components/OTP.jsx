@@ -142,6 +142,7 @@ const OTP = ({email}) =>{
                         <PrimaryButton
                             className="w-[425px] p-3 text-backgroundWhite"
                             text = "Confirm"
+                            rounded="md"
                             loading={loading}
                         />
                         </div> 

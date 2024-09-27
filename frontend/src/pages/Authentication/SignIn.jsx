@@ -118,6 +118,7 @@ const SignIn = () =>{
                             className="w-full p-3 text-backgroundWhite"
                             text = "Sign In"
                             loading={loading}
+                            rounded="md"
                         />
                         <div className="text-right font-bold text-cardDark font-roboto mt-2">
                             Forgot Password

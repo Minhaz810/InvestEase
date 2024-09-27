@@ -41,6 +41,7 @@ const ResetPassword = () =>{
                     <PrimaryButton
                         className="w-full p-3 text-backgroundWhite"
                         text = "Confirm"
+                        rounded="md"
                     />
                 </div>
 

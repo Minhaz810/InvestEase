@@ -1,9 +1,9 @@
 import Loader from "./Loader"
 
-const PrimaryButton = ({ className, text, loading }) => {
+const PrimaryButton = ({ className, text, loading, rounded}) => {
     return (
         <div>
-            <button className={`font-roboto rounded-md bg-cardDark ${className} flex justify-center`}>
+            <button className={`font-roboto rounded-${rounded} bg-cardDark ${className} hover:bg-hover flex justify-center`}>
                 {loading ? <Loader /> : text}
             </button>
         </div>
