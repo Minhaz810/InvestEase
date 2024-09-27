@@ -7,6 +7,9 @@ import { SetAccessToken,SetRefreshToken } from "../../api/setToken";
 import { useState,useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../../contexts/AuthContext";
+import AccessOTPContext from "../../contexts/AccessOTPContext";
+import { jwtDecode } from "jwt-decode";
+import ResendOTP from "../../api/resendOTP";
 
 
 const SignIn = () =>{
@@ -18,7 +21,9 @@ const SignIn = () =>{
     const {status} = location.state || {}
     const navigate = useNavigate()
     const {updateUser} = useContext(AuthContext)
-
+    const {setCanAccessOTP} = useContext(AccessOTPContext)
+    
+    
     const handleSubmit = async (e) =>{
         e.preventDefault()
         setLoading(true)
@@ -30,8 +35,16 @@ const SignIn = () =>{
             SetRefreshToken(refreshToken)
             updateUser(accessToken)
             setLoading(false)
-            navigate("/main")
+            let isVerified =accessToken? jwtDecode(accessToken)['is_verified']:false
+            setCanAccessOTP(true)
 
+            if (accessToken && !isVerified && setCanAccessOTP){
+                ResendOTP(email)
+                navigate("/otp",{state:{email}})
+            }else{
+                navigate("/main")
+            }
+            
         }else{
             let error = response['message']
             setError(error)

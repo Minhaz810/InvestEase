@@ -4,6 +4,8 @@ import OTPVerification from '../api/otpVerification'
 import ResendOTP from '../api/resendOTP'
 import { useNavigate } from 'react-router-dom'
 import Loader from './Loader'
+import { SetAccessToken } from '../api/setToken'
+import { SetRefreshToken } from '../api/setToken'
 
 
 const OTP = ({email}) =>{
@@ -64,7 +66,7 @@ const OTP = ({email}) =>{
                 setOtp(new Array(6).fill(""))
                 setLoading(false)
             }else{
-                navigate("/signin", { state: { status: "success" } });
+                navigate("/signin")
                 setLoading(false)
             }
         }

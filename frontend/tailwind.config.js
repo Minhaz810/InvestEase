@@ -22,7 +22,8 @@ export default {
     },
     fontSize: {
       primaryHeader: '48px',
-      subHeader:'24px'
+      subHeader:'24px',
+      navbar:'20px',
     },
   },
   plugins: [],

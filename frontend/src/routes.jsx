@@ -5,10 +5,10 @@ import SignIn from "./pages/Authentication/SignIn"
 import ForgotPassword from "./pages/Authentication/ForgotPassword"
 import ResetPassword from "./pages/Authentication/Reset Passwod"
 import OTPPage from "./pages/Authentication/OTP_Page"
-import AccessOTPContextProvider from "./contexts/RegistrationContextProvider"
+import AccessOTPContextProvider from "./contexts/OTPAccessContextProvider"
 import OTPPrivateRoute from "./components/OTPPrivateRoute"
 import PrivateRoute from "./components/PrivateRoute"
-import BasePage from "./pages/Authentication/BasePage"
+import Shared from "./pages/Shared"
 import SignInPrivateRoute from "./components/SignInPrivateroute"
 
 
@@ -16,29 +16,32 @@ const router = createBrowserRouter([
         {
             path : "/signin",
             element :(
-            <SignInPrivateRoute>
-                <SignIn/>
-            </SignInPrivateRoute>
+                <AccessOTPContextProvider>
+                    <SignInPrivateRoute>
+                        <SignIn/>
+                    </SignInPrivateRoute>
+                </AccessOTPContextProvider>
+          
             )
         },
         {
             path : "/",
             element :(
-            <AccessOTPContextProvider>
-                <SignInPrivateRoute>
-                    <SignIn/>
-                </SignInPrivateRoute>
-            </AccessOTPContextProvider>
+                <AccessOTPContextProvider>
+                    <SignInPrivateRoute>
+                        <SignIn/>
+                    </SignInPrivateRoute>
+                </AccessOTPContextProvider>
             )
         },
         {
             path : "/signup",
             element :(
-            <AccessOTPContextProvider>
-                <SignInPrivateRoute>
-                    <SignUp/>
-                </SignInPrivateRoute>
-            </AccessOTPContextProvider>     
+                <AccessOTPContextProvider>
+                    <SignInPrivateRoute>
+                        <SignUp/>
+                    </SignInPrivateRoute>    
+                </AccessOTPContextProvider>
             )
         },
         {
@@ -63,7 +66,7 @@ const router = createBrowserRouter([
             path: "/main",
             element: (
             <PrivateRoute>
-                <BasePage/>
+                <Shared/>
             </PrivateRoute>
             ),
             children: [
